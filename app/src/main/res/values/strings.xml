@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">LED Panel</string>
+    <string name="panels">Panels</string>
+    <string name="menu">Menu</string>
 </resources>
