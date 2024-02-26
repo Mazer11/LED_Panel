@@ -52,47 +52,14 @@ android {
 }
 
 dependencies {
-    //Feature
     implementation(project(":feature"))
-
-    //Core
-    implementation(CoreDependency.core)
-
-    //Compose
-    implementation(platform(ComposeDependency.composeBom))
-    implementation(ComposeDependency.composeUi)
-    implementation(ComposeDependency.composeGraphics)
-    implementation(ComposeDependency.composePreview)
-    implementation(ComposeDependency.composeMaterial3)
-    implementation(ComposeDependency.composeRuntimeLivedata)
-
-    //Activity
-    implementation(ActivityDependency.activityCompose)
-    implementation(ActivityDependency.activityKtx)
-
-    // Coroutine Lifecycle Scopes
-    implementation(CoroutineLifecycleScopesDependency.lifecycleRuntime)
-    implementation(CoroutineLifecycleScopesDependency.lifecycleViewmodel)
-    implementation(CoroutineLifecycleScopesDependency.lifecycleLivedata)
-
-    //Navigation
-    implementation(NavigationDependency.navigationCompose)
-    implementation(NavigationDependency.navigationFragment)
-
-    // Hilt
-    implementation(HiltDependency.hilt)
-    implementation(HiltDependency.hiltNavigationFilter)
-    ksp(HiltDependency.hiltCompiler)
-
-    //Data Store
-    implementation(DatastoreDependency.datastorePreferences)
-
-    //Tests
-    testImplementation(TestDependency.junit)
-    androidTestImplementation(TestDependency.androidJunitExt)
-    androidTestImplementation(TestDependency.espressoCore)
-    androidTestImplementation(platform(ComposeDependency.composeBom))
-    androidTestImplementation(TestDependency.composeJunit)
-    debugImplementation(TestDependency.composeTooling)
-    debugImplementation(TestDependency.composeManifest)
+    core()
+    compose()
+    activity()
+    coroutines()
+    navigation()
+    hilt()
+    datastore()
+    tests()
+    room()
 }

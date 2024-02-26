@@ -34,13 +34,7 @@ android {
 }
 
 dependencies {
-    //Core
-    implementation(CoreDependency.core)
-    //Room
-    implementation(RoomDependency.roomKtx)
-    annotationProcessor(RoomDependency.roomCompiler)
-    ksp(RoomDependency.roomKsp)
-
-    //Data Store
-    implementation(DatastoreDependency.datastorePreferences)
+    core()
+    datastore()
+    room()
 }
