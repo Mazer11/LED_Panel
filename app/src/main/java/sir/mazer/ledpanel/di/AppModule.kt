@@ -7,7 +7,10 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import sir.mazer.feture.datastore.DataStoreAccessObject
+import sir.mazer.feture.datastore.SettingsDataStore
 import sir.mazer.feture.room.LEDPanelRepository
+import sir.mazer.feture.room.PanelRepository
 import sir.mazer.feture.room.database.LEDRoom
 
 @Module
@@ -20,5 +23,9 @@ object AppModule {
             .build()
 
     @Provides
-    fun provideLEDPanelRepository(db: LEDRoom): LEDPanelRepository = LEDPanelRepository(db.roomDao)
+    fun provideLEDPanelRepository(db: LEDRoom): PanelRepository = LEDPanelRepository(db.roomDao)
+
+    @Provides
+    fun provideDatastore(@ApplicationContext context: Context): DataStoreAccessObject =
+        SettingsDataStore(context)
 }

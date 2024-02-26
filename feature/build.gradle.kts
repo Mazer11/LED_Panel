@@ -38,4 +38,5 @@ dependencies {
     implementation(project(":core"))
     core()
     room()
+    datastore()
 }
