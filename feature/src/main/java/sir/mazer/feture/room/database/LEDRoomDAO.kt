@@ -2,23 +2,23 @@ package sir.mazer.feture.room.database
 
 import androidx.room.Dao
 import androidx.room.Delete
-import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Upsert
 import sir.mazer.core.room.models.PanelData
 
 @Dao
 interface LEDRoomDAO {
 
     //Insert panel
-    @Insert
+    @Upsert
     suspend fun insertPanel(data: PanelData)
 
     //Delete panel
     @Delete
-    fun deletePanel(data: PanelData)
+    suspend fun deletePanel(data: PanelData)
 
     //Get panels
     @Query("SELECT * FROM panels")
-    fun getAllPanels(): List<PanelData>
+    suspend fun getAllPanels(): List<PanelData>
 
 }

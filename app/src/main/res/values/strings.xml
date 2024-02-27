@@ -2,4 +2,6 @@
     <string name="app_name">LED Panel</string>
     <string name="panels">Panels</string>
     <string name="menu">Menu</string>
+    <string name="main_screen_tooltip">Swipe from end to start to delete panel.\nSwipe from start to end to edit panel.\nTap to start demonstration.</string>
+    <string name="no_panels">You don\'t have any panels yet. Create new By clicking this text)</string>
 </resources>

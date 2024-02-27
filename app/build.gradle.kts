@@ -53,6 +53,7 @@ android {
 
 dependencies {
     implementation(project(":feature"))
+    implementation(project(":core"))
     core()
     compose()
     activity()

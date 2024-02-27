@@ -24,7 +24,7 @@ import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import sir.mazer.ledpanel.ui.common.LEDBottomBar
 import sir.mazer.ledpanel.ui.navigation.BottomBarDestinations
-import sir.mazer.ledpanel.ui.navigation.LEDNavigationHostController
+import sir.mazer.ledpanel.ui.navigation.LEDNavHost
 import sir.mazer.ledpanel.ui.theme.LEDPanelTheme
 
 @AndroidEntryPoint
@@ -80,7 +80,7 @@ class MainActivity : ComponentActivity() {
                         ),
                     containerColor = Color.Transparent
                 ) { paddingValues ->
-                    LEDNavigationHostController(
+                    LEDNavHost(
                         navHostController = navController,
                         modifier = Modifier
                             .padding(paddingValues)

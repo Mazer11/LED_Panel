@@ -8,9 +8,9 @@ class LEDPanelRepository(private val dao: LEDRoomDAO) : PanelRepository {
         dao.insertPanel(data)
     }
 
-    override fun deletePanel(data: PanelData) {
+    override suspend fun deletePanel(data: PanelData) {
         dao.deletePanel(data)
     }
 
-    override fun getAllPanels(): List<PanelData> = dao.getAllPanels()
+    override suspend fun getAllPanels(): List<PanelData> = dao.getAllPanels()
 }

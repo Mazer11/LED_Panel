@@ -12,5 +12,6 @@ data class PanelData(
     val textSize: Int,
     val textStyleIndex: Int,
     val showCells: Boolean,
-    val scrollType: String
+    val scrollType: String,
+    val isGlowingText: Boolean
 )
