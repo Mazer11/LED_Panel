@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import sir.mazer.core.room.models.PanelData
 import sir.mazer.feture.room.PanelRepository
+import sir.mazer.ledpanel.ui.screens.main.states.PanelDemonstrationScreenState
 import sir.mazer.ledpanel.ui.screens.main.states.PanelEditorScreenState
 import sir.mazer.ledpanel.ui.screens.main.states.SavedPanelsScreenState
 import sir.mazer.ledpanel.ui.theme.LEDBackgrounds
@@ -30,6 +31,11 @@ class MainViewModel @Inject constructor(
         MutableStateFlow<PanelEditorScreenState>(PanelEditorScreenState.Loading)
     val panelEditorScreenState: StateFlow<PanelEditorScreenState> =
         _panelEditorScreenState.asStateFlow()
+
+    private val _panelDemonstrationScreenState =
+        MutableStateFlow<PanelDemonstrationScreenState>(PanelDemonstrationScreenState.Loading)
+    val panelDemonstrationScreenState: StateFlow<PanelDemonstrationScreenState> =
+        _panelDemonstrationScreenState.asStateFlow()
 
     val styles = LEDFonts.entries.toList()
     val backgrounds = LEDBackgrounds.entries.toList()
@@ -58,7 +64,7 @@ class MainViewModel @Inject constructor(
 
     //----------------------Click-events---------------------------------
     fun onPanelClick(panel: PanelData) {
-        //Fill panel screen state
+        _panelDemonstrationScreenState.value = PanelDemonstrationScreenState.Success(panel)
     }
 
     fun onDeletePanel(panel: PanelData) {

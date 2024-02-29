@@ -24,8 +24,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import sir.mazer.ledpanel.ui.common.ErrorScreen
 import sir.mazer.ledpanel.ui.common.LoadingScreen
+import sir.mazer.ledpanel.ui.screens.main.PanelDemonstrationScreen
 import sir.mazer.ledpanel.ui.screens.main.PanelEditorScreen
 import sir.mazer.ledpanel.ui.screens.main.SavedPanelsScreen
+import sir.mazer.ledpanel.ui.screens.main.states.PanelDemonstrationScreenState
 import sir.mazer.ledpanel.ui.screens.main.states.PanelEditorScreenState
 import sir.mazer.ledpanel.ui.screens.main.states.SavedPanelsScreenState
 import sir.mazer.ledpanel.ui.screens.main.vm.MainViewModel
@@ -119,7 +121,41 @@ fun NavGraphBuilder.mainGraph(
         }
 
         composable(route = NavigationRoutes.GRAPH_MAIN_PANEL.route) {
+            val vm = it.sharedViewModel<MainViewModel>(navController = navController)
+            val screenState = vm.panelDemonstrationScreenState.collectAsState()
 
+            AnimatedContent(
+                targetState = screenState.value,
+                label = "",
+                transitionSpec = {
+                    fadeIn(tween(500)) togetherWith fadeOut(tween(500))
+                }
+            ) { state ->
+                when (state) {
+                    is PanelDemonstrationScreenState.Loading -> {
+                        LoadingScreen(modifier = Modifier.fillMaxSize())
+                    }
+
+                    is PanelDemonstrationScreenState.Error -> {
+                        ErrorScreen(
+                            message = state.message,
+                            modifier = Modifier
+                                .padding(MaterialTheme.spacing.medium)
+                                .fillMaxSize()
+                        )
+                    }
+
+                    is PanelDemonstrationScreenState.Success -> {
+                        PanelDemonstrationScreen(
+                            modifier = Modifier.fillMaxSize(),
+                            data = state.panel,
+                            textStyles = vm.styles,
+                            backgrounds = vm.backgrounds,
+                            onNavBack = { navController.navigateUp() }
+                        )
+                    }
+                }
+            }
         }
 
         composable(route = NavigationRoutes.GRAPH_MAIN_SETUP.route) {
