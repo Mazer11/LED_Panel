@@ -125,20 +125,22 @@ fun SavedPanelsScreen(
 
         //Panels list
         LazyColumn(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .padding(top = MaterialTheme.spacing.medium)
+                .fillMaxWidth()
         ) {
             if (panels.isNotEmpty())
                 items(panels) { data ->
                     SmallPanel(
                         text = data.text,
-                        textColor = Color(data.textColor.toInt()),
+                        textColor = Color(backgrounds[data.textColorIndex].color),
                         textStyle = MaterialTheme.typography.titleMedium.copy(fontFamily = styles[data.textStyleIndex].font),
                         backgroundColor = Color(backgrounds[data.backgroundIndex].color),
                         onDelete = { onDeletePanel(data) },
                         onEdit = { onOpenEditPanel(data) },
                         onClick = { onPanelClick(data) },
                         modifier = Modifier
-                            .padding(vertical = MaterialTheme.spacing.extraSmall)
+                            .padding(vertical = MaterialTheme.spacing.small)
                             .fillMaxWidth()
                     )
                 }
@@ -152,7 +154,7 @@ fun SavedPanelsScreen(
                         .clip(RoundedCornerShape(16.dp))
                         .clickable { onOpenCreateNewPanel() }
                         .background(
-                            color = MaterialTheme.colorScheme.surface,
+                            color = MaterialTheme.colorScheme.tertiaryContainer,
                             shape = RoundedCornerShape(16.dp)
                         )
                         .padding(
@@ -163,8 +165,8 @@ fun SavedPanelsScreen(
                     Icon(
                         painter = painterResource(id = R.drawable.plus_icon),
                         contentDescription = "",
-                        tint = MaterialTheme.colorScheme.onSurface,
-                        modifier = Modifier.size(48.dp)
+                        tint = MaterialTheme.colorScheme.onTertiaryContainer,
+                        modifier = Modifier.size(24.dp)
                     )
                 }
             }

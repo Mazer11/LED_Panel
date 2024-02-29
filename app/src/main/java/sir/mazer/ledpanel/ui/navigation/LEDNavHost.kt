@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavBackStackEntry
@@ -23,7 +24,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import sir.mazer.ledpanel.ui.common.ErrorScreen
 import sir.mazer.ledpanel.ui.common.LoadingScreen
+import sir.mazer.ledpanel.ui.screens.main.PanelEditorScreen
 import sir.mazer.ledpanel.ui.screens.main.SavedPanelsScreen
+import sir.mazer.ledpanel.ui.screens.main.states.PanelEditorScreenState
 import sir.mazer.ledpanel.ui.screens.main.states.SavedPanelsScreenState
 import sir.mazer.ledpanel.ui.screens.main.vm.MainViewModel
 import sir.mazer.ledpanel.ui.screens.splash.SplashScreen
@@ -102,6 +105,7 @@ fun NavGraphBuilder.mainGraph(
                                 navController.navigate(NavigationRoutes.GRAPH_MAIN_SETUP.route)
                             },
                             onOpenCreateNewPanel = {
+                                vm.onOpenNewPanelEditor()
                                 navController.navigate(NavigationRoutes.GRAPH_MAIN_SETUP.route)
                             },
                             modifier = Modifier
@@ -119,7 +123,47 @@ fun NavGraphBuilder.mainGraph(
         }
 
         composable(route = NavigationRoutes.GRAPH_MAIN_SETUP.route) {
+            val vm = it.sharedViewModel<MainViewModel>(navController = navController)
+            val screenState = vm.panelEditorScreenState.collectAsState()
 
+            AnimatedContent(
+                targetState = screenState.value,
+                label = "",
+                transitionSpec = {
+                    fadeIn(tween(500)) togetherWith fadeOut(tween(500))
+                }
+            ) { state ->
+                when (state) {
+                    is PanelEditorScreenState.Loading -> {
+                        LoadingScreen(modifier = Modifier.fillMaxSize())
+                    }
+
+                    is PanelEditorScreenState.Error -> {
+                        ErrorScreen(
+                            message = state.message,
+                            modifier = Modifier
+                                .padding(MaterialTheme.spacing.medium)
+                                .fillMaxSize()
+                        )
+                    }
+
+                    is PanelEditorScreenState.Success -> {
+                        PanelEditorScreen(
+                            modifier = Modifier
+                                .padding(16.dp)
+                                .fillMaxSize(),
+                            data = state.panel,
+                            textStyles = vm.styles,
+                            backgrounds = vm.backgrounds,
+                            onSave = { data ->
+                                vm.onEditOrCreatePanel(data)
+                                navController.navigateUp()
+                            },
+                            onNavBack = { navController.navigateUp() }
+                        )
+                    }
+                }
+            }
         }
     }
 }

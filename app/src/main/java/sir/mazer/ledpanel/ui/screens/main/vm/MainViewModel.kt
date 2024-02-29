@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import sir.mazer.core.room.models.PanelData
 import sir.mazer.feture.room.PanelRepository
+import sir.mazer.ledpanel.ui.screens.main.states.PanelEditorScreenState
 import sir.mazer.ledpanel.ui.screens.main.states.SavedPanelsScreenState
 import sir.mazer.ledpanel.ui.theme.LEDBackgrounds
 import sir.mazer.ledpanel.ui.theme.LEDFonts
@@ -24,6 +25,11 @@ class MainViewModel @Inject constructor(
         MutableStateFlow<SavedPanelsScreenState>(SavedPanelsScreenState.Loading)
     val savedPanelsScreenState: StateFlow<SavedPanelsScreenState> =
         _savedPanelsScreenState.asStateFlow()
+
+    private val _panelEditorScreenState =
+        MutableStateFlow<PanelEditorScreenState>(PanelEditorScreenState.Loading)
+    val panelEditorScreenState: StateFlow<PanelEditorScreenState> =
+        _panelEditorScreenState.asStateFlow()
 
     val styles = LEDFonts.entries.toList()
     val backgrounds = LEDBackgrounds.entries.toList()
@@ -59,14 +65,32 @@ class MainViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 deleteSavedPanel(panel)
-            } catch (e: Exception){
+                _savedPanelsScreenState.value = SavedPanelsScreenState.Success(loadSavedPanels())
+            } catch (e: Exception) {
                 SavedPanelsScreenState.Error("Error while delete panel. Try again later")
             }
         }
     }
 
     fun onOpenEditPanel(panel: PanelData) {
-        //Fill setup panel screen state
+        _panelEditorScreenState.value = PanelEditorScreenState.Success(panel)
+    }
+
+    fun onOpenNewPanelEditor() {
+        _panelEditorScreenState.value = PanelEditorScreenState.Success(null)
+    }
+
+    fun onEditOrCreatePanel(panel: PanelData) {
+        viewModelScope.launch {
+            addOrEditPanel(panel)
+            _savedPanelsScreenState.value = SavedPanelsScreenState.Loading
+            try {
+                _savedPanelsScreenState.value = SavedPanelsScreenState.Success(loadSavedPanels())
+            } catch (e: Exception) {
+                _savedPanelsScreenState.value =
+                    SavedPanelsScreenState.Error("Error while loading saved panels. Try again later")
+            }
+        }
     }
 
 }
