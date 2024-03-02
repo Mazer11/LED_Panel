@@ -60,6 +60,7 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -101,7 +102,7 @@ fun PanelEditorScreen(
     val showBlink = remember { mutableStateOf(data?.isBlink == true) }
     val blinkFrequencyMs = remember { mutableLongStateOf(data?.blinkFrequency ?: 500) }
     val selectedFontStyle = remember { mutableIntStateOf(data?.textStyleIndex ?: 0) }
-    val textSize = remember { mutableIntStateOf(data?.textSize ?: 16) }
+    val textSize = remember { mutableIntStateOf(data?.textSize ?: 24) }
     val textColor = remember { mutableIntStateOf(data?.textColorIndex ?: 1) }
     val backgroundColor = remember { mutableIntStateOf(data?.backgroundIndex ?: 0) }
     val showCells = remember { mutableStateOf(data?.showCells == true) }
@@ -160,7 +161,7 @@ fun PanelEditorScreen(
                 )
             }
             Text(
-                text = "Panel Editor",
+                text = stringResource(R.string.panel_editor),
                 color = MaterialTheme.colorScheme.onBackground,
                 modifier = Modifier.weight(2f),
                 textAlign = TextAlign.Center,
@@ -172,7 +173,7 @@ fun PanelEditorScreen(
                 )
             )
             Text(
-                text = "Save",
+                text = stringResource(R.string.save),
                 color = MaterialTheme.colorScheme.tertiary,
                 modifier = Modifier
                     .weight(1f)
@@ -343,9 +344,9 @@ fun PanelEditorScreen(
                     ) {
                         Text(
                             text = when (i) {
-                                0 -> "Text"
-                                1 -> "Bacground"
-                                else -> "Extra"
+                                0 -> stringResource(R.string.text)
+                                1 -> stringResource(R.string.background)
+                                else -> stringResource(R.string.extra)
                             },
                             color = contentColor.value,
                             style = MaterialTheme.typography.titleMedium
@@ -368,7 +369,7 @@ fun PanelEditorScreen(
                             //text
                             item {
                                 Text(
-                                    text = "Panel text",
+                                    text = stringResource(R.string.panel_text),
                                     color = MaterialTheme.colorScheme.onSurface,
                                     style = MaterialTheme.typography.titleMedium
                                 )
@@ -422,7 +423,7 @@ fun PanelEditorScreen(
                             //fontstyle
                             item {
                                 Text(
-                                    text = "Font style",
+                                    text = stringResource(R.string.font_style),
                                     color = MaterialTheme.colorScheme.onSurface,
                                     style = MaterialTheme.typography.titleMedium,
                                     modifier = Modifier.padding(top = MaterialTheme.spacing.medium)
@@ -471,7 +472,7 @@ fun PanelEditorScreen(
                             //textsize
                             item {
                                 Text(
-                                    text = "Text size",
+                                    text = stringResource(R.string.text_size),
                                     color = MaterialTheme.colorScheme.onSurface,
                                     style = MaterialTheme.typography.titleMedium,
                                     modifier = Modifier.padding(top = MaterialTheme.spacing.medium)
@@ -481,7 +482,7 @@ fun PanelEditorScreen(
                                     onValueChange = { newValue ->
                                         textSize.intValue = newValue.roundToInt()
                                     },
-                                    valueRange = 12f..96f,
+                                    valueRange = 24f..125f,
                                     modifier = Modifier.padding(top = MaterialTheme.spacing.small)
                                 )
                             }
@@ -489,7 +490,7 @@ fun PanelEditorScreen(
                             //text color
                             item {
                                 Text(
-                                    text = "Text color",
+                                    text = stringResource(R.string.text_color),
                                     color = MaterialTheme.colorScheme.onSurface,
                                     style = MaterialTheme.typography.titleMedium,
                                     modifier = Modifier.padding(top = MaterialTheme.spacing.medium)
@@ -537,7 +538,7 @@ fun PanelEditorScreen(
                                         onCheckedChange = { newValue -> isGlowing.value = newValue }
                                     )
                                     Text(
-                                        text = "Glowing text",
+                                        text = stringResource(R.string.glowing_text),
                                         color = MaterialTheme.colorScheme.onSurface,
                                         style = MaterialTheme.typography.titleMedium,
                                         modifier = Modifier.padding(start = MaterialTheme.spacing.medium)
@@ -556,7 +557,7 @@ fun PanelEditorScreen(
                             //background color
                             item {
                                 Text(
-                                    text = "Background color",
+                                    text = stringResource(R.string.background_color),
                                     color = MaterialTheme.colorScheme.onSurface,
                                     style = MaterialTheme.typography.titleMedium
                                 )
@@ -601,7 +602,7 @@ fun PanelEditorScreen(
                             //direction
                             item {
                                 Text(
-                                    text = "Animation direction",
+                                    text = stringResource(R.string.animation_direction),
                                     color = MaterialTheme.colorScheme.onSurface,
                                     style = MaterialTheme.typography.titleMedium,
                                     modifier = Modifier.padding(top = MaterialTheme.spacing.medium)
@@ -712,7 +713,7 @@ fun PanelEditorScreen(
                             //speed
                             item {
                                 Text(
-                                    text = "Animation speed slow down",
+                                    text = stringResource(R.string.animation_speed_slow_down),
                                     color = MaterialTheme.colorScheme.onSurface,
                                     style = MaterialTheme.typography.titleMedium,
                                     modifier = Modifier.padding(top = MaterialTheme.spacing.medium)
@@ -731,7 +732,7 @@ fun PanelEditorScreen(
                                             direction.value = old
                                         }
                                     },
-                                    valueRange = 100f..3000f,
+                                    valueRange = 100f..10000f,
                                     modifier = Modifier.padding(top = MaterialTheme.spacing.small)
                                 )
                             }
@@ -747,14 +748,14 @@ fun PanelEditorScreen(
                                         onCheckedChange = { newValue -> showBlink.value = newValue }
                                     )
                                     Text(
-                                        text = "Start blink effect",
+                                        text = stringResource(R.string.start_blink_effect),
                                         color = MaterialTheme.colorScheme.onSurface,
                                         style = MaterialTheme.typography.titleMedium,
                                         modifier = Modifier.padding(start = MaterialTheme.spacing.small)
                                     )
                                 }
                                 Text(
-                                    text = "WARNING: may potentially trigger seizures for people with photosensitive epilepsy!",
+                                    text = stringResource(R.string.warning_text),
                                     color = MaterialTheme.colorScheme.tertiary,
                                     style = MaterialTheme.typography.titleMedium,
                                     modifier = Modifier.padding(top = MaterialTheme.spacing.small)
@@ -764,7 +765,7 @@ fun PanelEditorScreen(
                             //blink frequency
                             item {
                                 Text(
-                                    text = "Blink frequency",
+                                    text = stringResource(R.string.blink_frequency_slow_down),
                                     color = MaterialTheme.colorScheme.onSurface,
                                     style = MaterialTheme.typography.titleMedium,
                                     modifier = Modifier.padding(top = MaterialTheme.spacing.medium)
@@ -790,7 +791,7 @@ fun PanelEditorScreen(
                                         onCheckedChange = { newValue -> showCells.value = newValue }
                                     )
                                     Text(
-                                        text = "Show grid",
+                                        text = stringResource(R.string.show_grid),
                                         color = MaterialTheme.colorScheme.onSurface,
                                         style = MaterialTheme.typography.titleMedium,
                                         modifier = Modifier.padding(start = MaterialTheme.spacing.small)

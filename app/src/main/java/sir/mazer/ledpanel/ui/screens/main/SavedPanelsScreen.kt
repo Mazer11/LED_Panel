@@ -150,6 +150,7 @@ fun SavedPanelsScreen(
                     horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier
+                        .padding(vertical = MaterialTheme.spacing.small)
                         .fillMaxWidth()
                         .clip(RoundedCornerShape(16.dp))
                         .clickable { onOpenCreateNewPanel() }

@@ -91,11 +91,11 @@ fun PanelDemonstrationScreen(
     Box(
         modifier = modifier
             .background(color = Color(backgrounds[data.backgroundIndex].color))
-            .clickable { showMenu.value = true },
-        contentAlignment = Alignment.Center
+            .clickable { showMenu.value = true }
     ) {
         LazyRow(
             modifier = Modifier
+                .align(Alignment.Center)
                 .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
             userScrollEnabled = false
@@ -168,7 +168,9 @@ fun PanelDemonstrationScreen(
         }
         AnimatedVisibility(
             visible = showMenu.value,
-            modifier = Modifier.padding(MaterialTheme.spacing.medium),
+            modifier = Modifier
+                .align(Alignment.TopStart)
+                .padding(MaterialTheme.spacing.medium),
             label = "Show menu"
         ) {
             Icon(

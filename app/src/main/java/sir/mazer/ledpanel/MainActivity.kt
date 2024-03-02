@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -22,17 +23,29 @@ import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
+import sir.mazer.feture.datastore.DataStoreAccessObject
 import sir.mazer.ledpanel.ui.common.LEDBottomBar
 import sir.mazer.ledpanel.ui.navigation.BottomBarDestinations
 import sir.mazer.ledpanel.ui.navigation.LEDNavHost
 import sir.mazer.ledpanel.ui.theme.LEDPanelTheme
+import sir.mazer.ledpanel.utils.ChangeLocale
+import java.util.Locale
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var datastore: DataStoreAccessObject
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             LEDPanelTheme {
+                val appLocale = datastore.getLanguage.collectAsState(
+                    initial = Locale.getDefault().language.toString()
+                )
+                ChangeLocale(lang = appLocale.value)
                 val navController = rememberNavController()
                 val navBackStack = navController.currentBackStackEntryAsState().value
                 val showBottomBar = remember { mutableStateOf(false) }

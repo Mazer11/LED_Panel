@@ -22,7 +22,4 @@ sealed class NavigationRoutes(val route: String) {
     //Menu screen
     data object GRAPH_MENU_START : NavigationRoutes("led_graph_menu_start")
 
-    //About
-    data object GRAPH_MENU_ABOUT : NavigationRoutes("led_graph_menu_about")
-
 }

@@ -31,6 +31,9 @@ import sir.mazer.ledpanel.ui.screens.main.states.PanelDemonstrationScreenState
 import sir.mazer.ledpanel.ui.screens.main.states.PanelEditorScreenState
 import sir.mazer.ledpanel.ui.screens.main.states.SavedPanelsScreenState
 import sir.mazer.ledpanel.ui.screens.main.vm.MainViewModel
+import sir.mazer.ledpanel.ui.screens.menu.screens.MenuScreen
+import sir.mazer.ledpanel.ui.screens.menu.states.MenuScreenState
+import sir.mazer.ledpanel.ui.screens.menu.vm.MenuViewModel
 import sir.mazer.ledpanel.ui.screens.splash.SplashScreen
 import sir.mazer.ledpanel.ui.theme.spacing
 
@@ -212,10 +215,43 @@ fun NavGraphBuilder.menuGraph(
         route = NavigationRoutes.GRAPH_MENU.route
     ) {
         composable(route = NavigationRoutes.GRAPH_MENU_START.route) {
+            val vm = it.sharedViewModel<MenuViewModel>(navController = navController)
+            val screenState = vm.menuScreenState.collectAsState()
 
-        }
+            AnimatedContent(
+                targetState = screenState.value,
+                label = "",
+                transitionSpec = {
+                    fadeIn(tween(500)) togetherWith fadeOut(tween(500))
+                }
+            ) { state ->
+                when (state) {
+                    is MenuScreenState.Loading -> {
+                        LoadingScreen(modifier = Modifier.fillMaxSize())
+                    }
 
-        composable(route = NavigationRoutes.GRAPH_MENU_ABOUT.route) {
+                    is MenuScreenState.Error -> {
+                        ErrorScreen(
+                            message = state.message,
+                            modifier = Modifier
+                                .padding(MaterialTheme.spacing.medium)
+                                .fillMaxSize()
+                        )
+                    }
+
+                    is MenuScreenState.Success -> {
+                        MenuScreen(
+                            modifier = Modifier
+                                .padding(MaterialTheme.spacing.medium)
+                                .fillMaxSize(),
+                            currentLanguage = state.currentLanguage,
+                            isPremium = state.isPremium,
+                            onNewLanguage = { newLanguage -> vm.onNewLanguage(newLanguage) },
+                            onPayPremium = { }
+                        )
+                    }
+                }
+            }
 
         }
     }

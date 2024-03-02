@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">LED Panel</string>
+    <string name="panels">Панели</string>
+    <string name="menu">Меню</string>
+    <string name="main_screen_tooltip">Смахните влево для удаления.\nСмахните вправо для редактирования.\nНажмите для демонстрации.</string>
+    <string name="remove_ads">Убрать рекламу</string>
+    <string name="panel_editor">Редактор панелей</string>
+    <string name="save">Готово</string>
+    <string name="text">Текст</string>
+    <string name="background">Фон</string>
+    <string name="extra">Дополнительно</string>
+    <string name="panel_text">Текст панели</string>
+    <string name="font_style">Стиль текста</string>
+    <string name="text_size">Размер текста</string>
+    <string name="text_color">Цвет текста</string>
+    <string name="glowing_text">Свечение текста</string>
+    <string name="background_color">Цвет фона</string>
+    <string name="animation_direction">Направление анимации</string>
+    <string name="animation_speed_slow_down">Замедление анимации</string>
+    <string name="start_blink_effect">Запустить мигание</string>
+    <string name="warning_text">ВНИМАНИЕ: потенциально может вызвать судороги у людей с светочувствительной эпилепсией!</string>
+    <string name="blink_frequency_slow_down">Снижение частоты мигания</string>
+    <string name="show_grid">Отобразить сетку</string>
+    <string name="premium_is_active">Премиум активирован</string>
+    <string name="select_language">Выберите язык</string>
+    <string name="remove_ads_description">Оплатите единожды и избавтесь от рекламы на всегда!\nВы хотите избавиться от рекламы?</string>
+    <string name="cancel">Отмена</string>
+    <string name="change_language">Сменить язык</string>
+</resources>
