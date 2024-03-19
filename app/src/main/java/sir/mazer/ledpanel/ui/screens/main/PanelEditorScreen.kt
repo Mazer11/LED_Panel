@@ -72,7 +72,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import sir.mazer.core.room.models.PanelData
 import sir.mazer.ledpanel.R
-import sir.mazer.ledpanel.ui.theme.LEDBackgrounds
+import sir.mazer.ledpanel.ui.theme.LEDColors
 import sir.mazer.ledpanel.ui.theme.LEDFonts
 import sir.mazer.ledpanel.ui.theme.LEDPanelTheme
 import sir.mazer.ledpanel.ui.theme.spacing
@@ -85,7 +85,7 @@ fun PanelEditorScreen(
     modifier: Modifier = Modifier,
     data: PanelData? = null,
     textStyles: List<LEDFonts>,
-    backgrounds: List<LEDBackgrounds>,
+    backgrounds: List<LEDColors>,
     onSave: (PanelData) -> Unit,
     onNavBack: () -> Unit
 ) {
@@ -349,7 +349,7 @@ fun PanelEditorScreen(
                                 else -> stringResource(R.string.extra)
                             },
                             color = contentColor.value,
-                            style = MaterialTheme.typography.titleMedium
+                            style = MaterialTheme.typography.bodyMedium
                         )
                     }
                 }
@@ -828,7 +828,7 @@ private fun PanelEditorScreenPreview() {
                 .fillMaxSize(),
             data = null,
             textStyles = listOf(LEDFonts.DEFAULT),
-            backgrounds = listOf(LEDBackgrounds.BLUE, LEDBackgrounds.BROWN),
+            backgrounds = listOf(LEDColors.BLUE, LEDColors.BROWN),
             onSave = {},
             onNavBack = {}
         )

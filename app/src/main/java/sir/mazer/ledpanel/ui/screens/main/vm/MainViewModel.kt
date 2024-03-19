@@ -13,7 +13,7 @@ import sir.mazer.feture.room.PanelRepository
 import sir.mazer.ledpanel.ui.screens.main.states.PanelDemonstrationScreenState
 import sir.mazer.ledpanel.ui.screens.main.states.PanelEditorScreenState
 import sir.mazer.ledpanel.ui.screens.main.states.SavedPanelsScreenState
-import sir.mazer.ledpanel.ui.theme.LEDBackgrounds
+import sir.mazer.ledpanel.ui.theme.LEDColors
 import sir.mazer.ledpanel.ui.theme.LEDFonts
 import javax.inject.Inject
 
@@ -38,7 +38,7 @@ class MainViewModel @Inject constructor(
         _panelDemonstrationScreenState.asStateFlow()
 
     val styles = LEDFonts.entries.toList()
-    val backgrounds = LEDBackgrounds.entries.toList()
+    val backgrounds = LEDColors.entries.toList()
 
     init {
         viewModelScope.launch(Dispatchers.IO) {

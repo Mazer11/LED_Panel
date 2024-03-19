@@ -81,8 +81,17 @@ fun DependencyHandler.tests() {
     debugImplementation(TestDependency.composeManifest)
 }
 
-fun DependencyHandler.room(){
+fun DependencyHandler.room() {
     implementation(RoomDependency.roomKtx)
     annotationProcessor(RoomDependency.roomCompiler)
     ksp(RoomDependency.roomKsp)
+}
+
+fun DependencyHandler.billing() {
+    implementation(BillingDependency.billing)
+    implementation(BillingDependency.billingKtx)
+}
+
+fun DependencyHandler.firebase() {
+    implementPlatform(platform(FirebaseDependency.firebasebom))
 }

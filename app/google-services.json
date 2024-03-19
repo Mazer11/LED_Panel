@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1020103032340",
+    "project_id": "led-panel-6f9ef",
+    "storage_bucket": "led-panel-6f9ef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1020103032340:android:b56de53fc8c949b3cd3101",
+        "android_client_info": {
+          "package_name": "sir.mazer.ledpanel"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArdt3uCgVhM43_7qNK1CfR4PmKPJyuSV0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

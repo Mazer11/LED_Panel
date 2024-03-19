@@ -245,9 +245,7 @@ fun NavGraphBuilder.menuGraph(
                                 .padding(MaterialTheme.spacing.medium)
                                 .fillMaxSize(),
                             currentLanguage = state.currentLanguage,
-                            isPremium = state.isPremium,
                             onNewLanguage = { newLanguage -> vm.onNewLanguage(newLanguage) },
-                            onPayPremium = { }
                         )
                     }
                 }

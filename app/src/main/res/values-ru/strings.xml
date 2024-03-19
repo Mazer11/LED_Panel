@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">LED Panel</string>
     <string name="panels">Панели</string>
     <string name="menu">Меню</string>
     <string name="main_screen_tooltip">Смахните влево для удаления.\nСмахните вправо для редактирования.\nНажмите для демонстрации.</string>
@@ -11,7 +10,7 @@
     <string name="background">Фон</string>
     <string name="extra">Дополнительно</string>
     <string name="panel_text">Текст панели</string>
-    <string name="font_style">Стиль текста</string>
+    <string name="font_style">Стиль текста (может отличаться, если текст не на английском)</string>
     <string name="text_size">Размер текста</string>
     <string name="text_color">Цвет текста</string>
     <string name="glowing_text">Свечение текста</string>

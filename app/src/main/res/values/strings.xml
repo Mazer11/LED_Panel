@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">LED Panel</string>
+    <string name="app_name" translatable="false">LED Panel</string>
     <string name="panels">Panels</string>
     <string name="menu">Menu</string>
     <string name="main_screen_tooltip">Swipe from end to start to delete panel.\nSwipe from start to end to edit panel.\nTap to start demonstration.</string>
@@ -10,7 +10,7 @@
     <string name="background">Background</string>
     <string name="extra">Extra</string>
     <string name="panel_text">Panel text</string>
-    <string name="font_style">Font style</string>
+    <string name="font_style">Font style (maybe wrong for not english text)</string>
     <string name="text_size">Text size</string>
     <string name="text_color">Text color</string>
     <string name="glowing_text">Glowing text</string>

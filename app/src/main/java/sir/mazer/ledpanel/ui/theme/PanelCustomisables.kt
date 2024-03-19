@@ -1,22 +1,66 @@
 package sir.mazer.ledpanel.ui.theme
 
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import sir.mazer.ledpanel.R
 
-enum class LEDFonts(val font: FontFamily){
+enum class LEDFonts(val font: FontFamily) {
     DEFAULT(FontFamily.Default),
     CURSIVE(FontFamily.Cursive),
     MONOSPACE(FontFamily.Monospace),
     SERIF(FontFamily.Serif),
-    SANSSERIF(FontFamily.SansSerif)
+    SANSSERIF(FontFamily.SansSerif),
+    ACERVGA(FontFamily(Font(R.font.acer_vga))),
+    ALUMNISANPISRIPE(FontFamily(Font(R.font.alumnisanspinstripe_regular))),
+    ARCHITECTSDAUGHTER(FontFamily(Font(R.font.architectsdaughter_regular))),
+    AREFRUQAAINK(FontFamily(Font(R.font.arefruqaaink_regular))),
+    BONHEURROYALE(FontFamily(Font(R.font.bonheurroyale_regular))),
+    BUGEEHAIRLINE(FontFamily(Font(R.font.bungeehairline_regular))),
+    CEVICHEONE(FontFamily(Font(R.font.cevicheone_regular))),
+    FOLDIT(FontFamily(Font(R.font.foldit_variablefont_wght))),
+    FUZZYBUBBLES(FontFamily(Font(R.font.fuzzybubbles_regular))),
+    GLORIAHALLELUJAH(FontFamily(Font(R.font.gloriahallelujah_regular))),
+    GREYQO(FontFamily(Font(R.font.greyqo_regular))),
+    IBMBIOS(FontFamily(Font(R.font.ibm_bios))),
+    INKNUTANTIQUA(FontFamily(Font(R.font.inknutantiqua_regular))),
+    KOULEN(FontFamily(Font(R.font.koulen_regular))),
+    MADIMIONE(FontFamily(Font(R.font.madimione_regular))),
+    OJUJU(FontFamily(Font(R.font.ojuju_variablefont_wght))),
+    OLEOSCRIPTS(FontFamily(Font(R.font.oleoscriptswashcaps_regular))),
+    OVERPASSMONO(FontFamily(Font(R.font.overpassmono_variablefont_wght))),
+    RUBIKMAPS(FontFamily(Font(R.font.rubikmaps_regular))),
+    RUBIKSCRIBBLE(FontFamily(Font(R.font.rubikscribble_regular))),
+    RUBIKSTORM(FontFamily(Font(R.font.rubikstorm_regular))),
+    SNOWBURSTSTONE(FontFamily(Font(R.font.snowburstone_regular))),
 }
 
-enum class LEDBackgrounds(val color: Long){
+enum class LEDColors(val color: Long) {
     BLUE(0xFF337AFA),
+    BLUE_LIGHT(0xFF33CCFF),
+    BLUE_DARK(0xFF151EB6),
     GREEN(0xFF4BBA33),
+    GREEN_LIGHT(0xFF96EF3A),
+    GREEN_DARK(0xFF009A09),
     YELLOW(0xFFF9E539),
+    YELLOW_LIGHT(0xFFFFFF70),
+    YELLOW_DARK(0xFFFFE500),
     ORANGE(0xFFE27531),
+    ORANGE_LIGHT(0xFFE29649),
+    ORANGE_DARK(0xFFE25700),
     RED(0xFFFC3D3B),
-    PINK(0xFFFFB6B4),
-    PURPLE(0xFF101010),
-    BROWN(0xFF9F4811)
+    RED_LIGHT(0xFFE56458),
+    RED_DARK(0xFFB20602),
+    PINK(0xFFFF85B4),
+    PINK_LIGHT(0xFFFFB6B4),
+    PINK_DARK(0xFFDA0091),
+    BLACK(0xFF000000),
+    GRAY(0xFF838996),
+    GRAY_LIGHT(0xFFBCC5D7),
+    GRAY_DARK(0xFF101010),
+    PURPLE(0xFF9457EB),
+    PURPLE_LIGHT(0xFFC596FF),
+    PURPLE_DARK(0xFFAA00E3),
+    BROWN(0xFF9F4811),
+    BROWN_LIGHT(0xFFA65B29),
+    BROWN_DARK(0xFF93251B)
 }

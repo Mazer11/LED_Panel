@@ -41,7 +41,7 @@ import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.delay
 import sir.mazer.core.room.models.PanelData
 import sir.mazer.ledpanel.R
-import sir.mazer.ledpanel.ui.theme.LEDBackgrounds
+import sir.mazer.ledpanel.ui.theme.LEDColors
 import sir.mazer.ledpanel.ui.theme.LEDFonts
 import sir.mazer.ledpanel.ui.theme.spacing
 
@@ -50,7 +50,7 @@ fun PanelDemonstrationScreen(
     modifier: Modifier = Modifier,
     data: PanelData,
     textStyles: List<LEDFonts>,
-    backgrounds: List<LEDBackgrounds>,
+    backgrounds: List<LEDColors>,
     onNavBack: () -> Unit
 ) {
     val context = LocalContext.current

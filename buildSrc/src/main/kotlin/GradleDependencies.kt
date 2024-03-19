@@ -9,6 +9,8 @@ object DependenciesVersions {
     const val dataStoreVersion = "1.0.0"
     const val composeBomVersion = "2023.10.01"
     const val espressoVersion = "3.5.1"
+    const val billing_version = "6.1.0"
+    const val firebase_version = "32.7.3"
 }
 
 object CoreDependency {
@@ -72,4 +74,13 @@ object TestDependency {
     const val composeJunit = "androidx.compose.ui:ui-test-junit4"
     const val composeTooling = "androidx.compose.ui:ui-tooling"
     const val composeManifest = "androidx.compose.ui:ui-test-manifest"
+}
+
+object BillingDependency {
+    const val billing = "com.android.billingclient:billing:${DependenciesVersions.billing_version}"
+    const val billingKtx = "com.android.billingclient:billing-ktx:${DependenciesVersions.billing_version}"
+}
+
+object FirebaseDependency {
+    const val firebasebom = "com.google.firebase:firebase-bom:${DependenciesVersions.firebase_version}"
 }

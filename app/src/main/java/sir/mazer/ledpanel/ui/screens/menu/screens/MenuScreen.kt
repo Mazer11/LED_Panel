@@ -1,6 +1,5 @@
 package sir.mazer.ledpanel.ui.screens.menu.screens
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -11,12 +10,8 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.RadioButton
@@ -27,8 +22,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import sir.mazer.ledpanel.R
@@ -40,18 +33,17 @@ import java.util.Locale
 fun MenuScreen(
     modifier: Modifier = Modifier,
     currentLanguage: String,
-    isPremium: Boolean,
-    onNewLanguage: (String) -> Unit,
-    onPayPremium: () -> Unit
+    onNewLanguage: (String) -> Unit
 ) {
     val showLanguageDialog = remember { mutableStateOf(false) }
-    val showPremiumDialog = remember { mutableStateOf(false) }
 
     Column(
         modifier = modifier
     ) {
         MenuItem(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .padding(top = 16.dp)
+                .fillMaxWidth(),
             onClick = { showLanguageDialog.value = true }
         ) {
             Text(
@@ -60,34 +52,6 @@ fun MenuScreen(
                 color = MaterialTheme.colorScheme.onSecondaryContainer
             )
         }
-        MenuItem(
-            modifier = Modifier
-                .padding(top = MaterialTheme.spacing.medium)
-                .fillMaxWidth(),
-            onClick = { if (!isPremium) showPremiumDialog.value = true }
-        ) {
-            if (isPremium) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.accept_icon),
-                        contentDescription = "",
-                        tint = MaterialTheme.colorScheme.tertiary,
-                        modifier = Modifier.size(24.dp)
-                    )
-                    Text(
-                        text = stringResource(id = R.string.premium_is_active),
-                        style = MaterialTheme.typography.titleMedium,
-                        color = MaterialTheme.colorScheme.onSecondaryContainer
-                    )
-                }
-            } else {
-                Text(
-                    text = stringResource(R.string.remove_ads),
-                    style = MaterialTheme.typography.titleMedium,
-                    color = MaterialTheme.colorScheme.onSecondaryContainer
-                )
-            }
-        }
     }
 
     if (showLanguageDialog.value)
@@ -95,11 +59,6 @@ fun MenuScreen(
             currentLanguage = currentLanguage,
             onNewLanguage = onNewLanguage,
             onDismissRequest = { showLanguageDialog.value = false }
-        )
-    if (showPremiumDialog.value)
-        RemoveAdsDialog(
-            onPayPremium = onPayPremium,
-            onDismissRequest = { showPremiumDialog.value = false }
         )
 }
 
@@ -187,76 +146,5 @@ private fun SelectLanguageDialog(
             }
         }
         Spacer(modifier = Modifier.height(MaterialTheme.spacing.extraLarge * 2))
-    }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-private fun RemoveAdsDialog(
-    modifier: Modifier = Modifier,
-    onPayPremium: () -> Unit,
-    onDismissRequest: () -> Unit
-) {
-    ModalBottomSheet(
-        onDismissRequest = { onDismissRequest() },
-        shape = MaterialTheme.shapes.small,
-        containerColor = MaterialTheme.colorScheme.surface,
-        contentColor = MaterialTheme.colorScheme.onSurface,
-        modifier = modifier,
-        dragHandle = {},
-        windowInsets = WindowInsets(0, 0, 0, 0)
-    ) {
-        Text(
-            text = stringResource(R.string.remove_ads),
-            color = MaterialTheme.colorScheme.onSurface,
-            style = MaterialTheme.typography.titleMedium,
-            modifier = Modifier.padding(MaterialTheme.spacing.medium)
-        )
-        Text(
-            text = stringResource(R.string.remove_ads_description),
-            color = MaterialTheme.colorScheme.onSurface,
-            style = MaterialTheme.typography.titleMedium,
-            modifier = Modifier.padding(
-                horizontal = MaterialTheme.spacing.medium,
-                vertical = MaterialTheme.spacing.small
-            )
-        )
-        Button(
-            onClick = { onPayPremium() },
-            modifier = Modifier
-                .padding(
-                    horizontal = MaterialTheme.spacing.medium,
-                    vertical = MaterialTheme.spacing.small
-                )
-                .fillMaxWidth(),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = MaterialTheme.colorScheme.primaryContainer
-            )
-        ) {
-            Text(
-                text = stringResource(id = R.string.remove_ads),
-                color = MaterialTheme.colorScheme.onPrimaryContainer,
-                style = MaterialTheme.typography.bodyMedium
-            )
-        }
-        Button(
-            onClick = { onDismissRequest() },
-            modifier = Modifier
-                .padding(
-                    start = MaterialTheme.spacing.medium,
-                    end = MaterialTheme.spacing.medium,
-                    top = MaterialTheme.spacing.small,
-                    bottom = MaterialTheme.spacing.extraLarge * 2
-                )
-                .fillMaxWidth(),
-            colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent),
-            border = BorderStroke(1.dp, MaterialTheme.colorScheme.onSurface)
-        ) {
-            Text(
-                text = stringResource(id = R.string.cancel),
-                color = MaterialTheme.colorScheme.onSurface,
-                style = MaterialTheme.typography.bodyMedium
-            )
-        }
     }
 }

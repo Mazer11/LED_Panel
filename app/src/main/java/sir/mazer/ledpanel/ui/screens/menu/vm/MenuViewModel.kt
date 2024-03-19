@@ -31,18 +31,14 @@ class MenuViewModel @Inject constructor(
     //------------------------Data-processing----------------------------
     private suspend fun getLocale(): String = dataStore.getLanguage.first()
 
-    private suspend fun checkPremium(): Boolean = dataStore.getPremium.first()
-
-    private suspend fun setPremiumStatus(isPremium: Boolean) = dataStore.setPremium(isPremium)
-
     private suspend fun changeLanguage(newLocale: String) = dataStore.setLanguage(newLocale)
 
     private suspend fun initializeMenu() {
         try {
             val locale = getLocale()
-            val isPremium = checkPremium()
+            //If is not premium than start connection with gp
             _menuScreenState.value =
-                MenuScreenState.Success(isPremium = isPremium, currentLanguage = locale)
+                MenuScreenState.Success(currentLanguage = locale)
         } catch (e: Exception) {
             _menuScreenState.value =
                 MenuScreenState.Error("Error while loading data. Try again later")
@@ -57,12 +53,6 @@ class MenuViewModel @Inject constructor(
             if (_menuScreenState.value is MenuScreenState.Success)
                 _menuScreenState.value =
                     (_menuScreenState.value as MenuScreenState.Success).copy(currentLanguage = newLocale)
-        }
-    }
-
-    fun onSetPremium(newValue: Boolean) {
-        viewModelScope.launch {
-            setPremiumStatus(newValue)
         }
     }
 

@@ -3,7 +3,9 @@ package sir.mazer.ledpanel.ui.screens.main.common
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -74,7 +76,7 @@ fun SmallPanel(
                     Icon(
                         painter = painterResource(id = R.drawable.trashcan_icon),
                         contentDescription = "",
-                        modifier = Modifier.size(48.dp),
+                        modifier = Modifier.size(24.dp),
                         tint = MaterialTheme.colorScheme.onErrorContainer
                     )
                 }
@@ -93,7 +95,7 @@ fun SmallPanel(
                     Icon(
                         painter = painterResource(id = R.drawable.edit_icon),
                         contentDescription = "",
-                        modifier = Modifier.size(48.dp),
+                        modifier = Modifier.size(24.dp),
                         tint = MaterialTheme.colorScheme.onTertiaryContainer
                     )
                 }
@@ -113,11 +115,9 @@ fun SmallPanel(
 
         },
         dismissContent = {
-            Text(
-                text = text,
-                style = textStyle,
-                color = textColor,
+            Row(
                 modifier = Modifier
+                    .height(52.dp)
                     .fillMaxWidth()
                     .clip(RoundedCornerShape(16.dp))
                     .clickable { onClick() }
@@ -128,8 +128,15 @@ fun SmallPanel(
                     .padding(
                         vertical = MaterialTheme.spacing.small,
                         horizontal = MaterialTheme.spacing.medium
-                    )
-            )
+                    ),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = text,
+                    style = textStyle,
+                    color = textColor
+                )
+            }
         },
         modifier = modifier
     )

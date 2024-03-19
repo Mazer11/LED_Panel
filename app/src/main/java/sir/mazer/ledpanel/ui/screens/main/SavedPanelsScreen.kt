@@ -35,7 +35,7 @@ import androidx.compose.ui.unit.dp
 import sir.mazer.core.room.models.PanelData
 import sir.mazer.ledpanel.R
 import sir.mazer.ledpanel.ui.screens.main.common.SmallPanel
-import sir.mazer.ledpanel.ui.theme.LEDBackgrounds
+import sir.mazer.ledpanel.ui.theme.LEDColors
 import sir.mazer.ledpanel.ui.theme.LEDFonts
 import sir.mazer.ledpanel.ui.theme.LEDPanelTheme
 import sir.mazer.ledpanel.ui.theme.spacing
@@ -46,7 +46,7 @@ fun SavedPanelsScreen(
     modifier: Modifier = Modifier,
     panels: List<PanelData>,
     styles: List<LEDFonts>,
-    backgrounds: List<LEDBackgrounds>,
+    backgrounds: List<LEDColors>,
     onPanelClick: (PanelData) -> Unit,
     onDeletePanel: (PanelData) -> Unit,
     onOpenEditPanel: (PanelData) -> Unit,
