@@ -3,7 +3,6 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("com.google.devtools.ksp")
     id("dagger.hilt.android.plugin")
-    id("com.google.gms.google-services")
 }
 
 android {
@@ -64,6 +63,5 @@ dependencies {
     datastore()
     tests()
     room()
-    billing()
     firebase()
 }
