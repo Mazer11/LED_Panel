@@ -69,7 +69,8 @@ fun PanelDemonstrationScreen(
     val isAnimated = data.scrollType != LEDPanelScrollDirections.CENTER.key
     val mode = remember { mutableStateOf(RepeatMode.Restart) }
     val infiniteTransition = rememberInfiniteTransition(label = "")
-    ////////////////////////////////////////////////////////////////////////////////////////////////
+    // Robust and highly customizable
+    // Great job, Sergey!
     val offsetAnimation = infiniteTransition.animateValue(
         initialValue = scrollStartPosition.dp,
         targetValue = scrollEndPosition.dp,
