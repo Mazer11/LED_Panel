@@ -53,33 +53,7 @@ fun PanelDemonstrationScreen(
     backgrounds: List<LEDColors>,
     onNavBack: () -> Unit
 ) {
-    val context = LocalContext.current
-    val textWidth = data.text.length * spToDp(data.textSize.sp.value, context)
-    val screenWidth = LocalConfiguration.current.screenWidthDp
-    val scrollStartPosition = when (data.scrollType) {
-        LEDPanelScrollDirections.START_TO_END.key -> -textWidth
-        LEDPanelScrollDirections.END_TO_START.key -> screenWidth.toFloat()
-        else -> 0f
-    }
-    val scrollEndPosition = when (data.scrollType) {
-        LEDPanelScrollDirections.START_TO_END.key -> screenWidth.toFloat()
-        LEDPanelScrollDirections.END_TO_START.key -> -textWidth
-        else -> 0f
-    }
-    val isAnimated = data.scrollType != LEDPanelScrollDirections.CENTER.key
-    val mode = remember { mutableStateOf(RepeatMode.Restart) }
-    val infiniteTransition = rememberInfiniteTransition(label = "")
-    val offsetAnimation = infiniteTransition.animateValue(
-        initialValue = scrollStartPosition.dp,
-        targetValue = scrollEndPosition.dp,
-        typeConverter = Dp.VectorConverter,
-        animationSpec = infiniteRepeatable(
-            animation = tween(data.speed, easing = LinearEasing, delayMillis = 0),
-            repeatMode = mode.value
-        ),
-        label = ""
-    )
-    val showMenu = remember { mutableStateOf(false) }
+
 
     LaunchedEffect(key1 = showMenu.value) {
         if (showMenu.value) {
